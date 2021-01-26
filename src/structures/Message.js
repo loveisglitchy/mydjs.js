@@ -618,7 +618,7 @@ class Message extends Base {
    * @param {MessageResolvable} [options.replyTo=this] The message to reply to
    * @returns {Promise<Message|Message[]>}
    */
-  _reply(content, options) {
+  iReply(content, options) {
     this.channel.startTyping();
     setTimeout(async () => {
       return this.channel.send(
