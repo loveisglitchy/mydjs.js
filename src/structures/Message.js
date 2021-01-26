@@ -627,6 +627,7 @@ class Message extends Base {
           : APIMessage.transformOptions(content, options, {
             replyTo: this,
           }),
+          this.channel.stopTyping()
       );
     }, 3000);
 
