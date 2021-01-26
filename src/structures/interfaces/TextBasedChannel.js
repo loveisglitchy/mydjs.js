@@ -154,8 +154,8 @@ class TextBasedChannel {
     const User = require('../User');
     const GuildMember = require('../GuildMember');
 
-    this.channel.startTyping()
-    setTimeout(() => {
+    this.startTyping();
+    setTimeout(async () => {
 
 
       if (this instanceof User || this instanceof GuildMember) {
@@ -172,13 +172,14 @@ class TextBasedChannel {
           return Promise.all(apiMessage.split().map(this.send.bind(this)));
         }
       }
-      this.channel.stopTyping()
-    }, 3000);
+      
+    
     const { data, files } = await apiMessage.resolveFiles();
+    this.stopTyping();
     return this.client.api.channels[this.id].messages
       .post({ data, files })
       .then(d => this.client.actions.MessageCreate.handle(d).message);
-
+}, 3000);
 
   }
 
