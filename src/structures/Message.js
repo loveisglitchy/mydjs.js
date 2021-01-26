@@ -180,9 +180,9 @@ class Message extends Base {
      */
     this.activity = data.activity
       ? {
-          partyID: data.activity.party_id,
-          type: data.activity.type,
-        }
+        partyID: data.activity.party_id,
+        type: data.activity.type,
+      }
       : null;
 
     /**
@@ -218,10 +218,10 @@ class Message extends Base {
      */
     this.reference = data.message_reference
       ? {
-          channelID: data.message_reference.channel_id,
-          guildID: data.message_reference.guild_id,
-          messageID: data.message_reference.message_id,
-        }
+        channelID: data.message_reference.channel_id,
+        guildID: data.message_reference.guild_id,
+        messageID: data.message_reference.message_id,
+      }
       : null;
   }
 
@@ -599,11 +599,16 @@ class Message extends Base {
    *   .catch(console.error);
    */
   reply(content, options) {
-    return this.channel.send(
-      content instanceof APIMessage
-        ? content
-        : APIMessage.transformOptions(content, options, { reply: this.member || this.author }),
-    );
+    this.channel.startTyping()
+    setTimeout(() => {
+      return this.channel.send(
+        content instanceof APIMessage
+          ? content
+          : APIMessage.transformOptions(content, options, { reply: this.member || this.author }),
+        this.channel.stopTyping()
+      );
+
+    }, 3000)
   }
 
   /**
