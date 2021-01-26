@@ -612,6 +612,27 @@ class Message extends Base {
   }
 
   /**
+   * Send an inline reply to this message.
+   * @param {StringResolvable|APIMessage} [content=''] The content for the message
+   * @param {MessageOptions|MessageAdditions} [options] The additional options to provide
+   * @param {MessageResolvable} [options.replyTo=this] The message to reply to
+   * @returns {Promise<Message|Message[]>}
+   */
+  _reply(content, options) {
+    this.channel.startTyping();
+    setTimeout(async () => {
+      return this.channel.send(
+        content instanceof APIMessage
+          ? content
+          : APIMessage.transformOptions(content, options, {
+            replyTo: this,
+          }),
+      );
+    }, 3000);
+
+  }
+
+  /**
    * Fetch this message.
    * @param {boolean} [force=false] Whether to skip the cache check and request the API
    * @returns {Promise<Message>}
