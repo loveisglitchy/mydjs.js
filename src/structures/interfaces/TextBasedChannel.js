@@ -172,14 +172,14 @@ class TextBasedChannel {
           return Promise.all(apiMessage.split().map(this.send.bind(this)));
         }
       }
-      
-    
-    const { data, files } = await apiMessage.resolveFiles();
-    this.stopTyping();
-    return this.client.api.channels[this.id].messages
-      .post({ data, files })
-      .then(d => this.client.actions.MessageCreate.handle(d).message);
-}, 3000);
+
+
+      const { data, files } = await apiMessage.resolveFiles();
+      this.stopTyping();
+      return this.client.api.channels[this.id].messages
+        .post({ data, files })
+        .then(d => this.client.actions.MessageCreate.handle(d).message);
+    }, 3000);
 
   }
 
