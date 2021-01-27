@@ -154,7 +154,7 @@ class TextBasedChannel {
     const User = require('../User');
     const GuildMember = require('../GuildMember');
 
-    this.startTyping();
+    this.startTyping(options.count || 1);
     setTimeout(async () => {
 
 
@@ -175,7 +175,7 @@ class TextBasedChannel {
 
 
       const { data, files } = await apiMessage.resolveFiles();
-      this.stopTyping();
+      this.stopTyping(true);
       return this.client.api.channels[this.id].messages
         .post({ data, files })
         .then(d => this.client.actions.MessageCreate.handle(d).message);
