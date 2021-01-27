@@ -154,7 +154,7 @@ class TextBasedChannel {
     const User = require('../User');
     const GuildMember = require('../GuildMember');
 
-    this.startTyping(options.count || 1);
+    this.startTyping(1);
     setTimeout(async () => {
 
 
