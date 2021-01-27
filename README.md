@@ -16,9 +16,11 @@
     <a href="https://nodei.co/npm/discord.js/"><img src="https://nodei.co/npm/discord.js.png?downloads=true&stars=true" alt="npm installnfo" /></a>
   </p>
 </div>
+## DISCLAIMER: 
 ```
-DISCLAIMER: I do claim any ownership of this repo and will not provide support if you wish to use this. This is mainly for my private use, but I have listed it as public so that I can pull it into any and all of my discord bot repos without being required to sign into Github. If you wish to seek help please refer to the official repo.
+ I do claim any ownership of this repo and will not provide support if you wish to use this. This is mainly for my private use, but I have listed it as public so that I can pull it into any and all of my discord bot repos without being required to sign into Github. If you wish to seek help please refer to the official repo.
 ```
+
 ## Table of contents
 
 - [About](#about)
