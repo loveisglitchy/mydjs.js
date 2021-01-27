@@ -179,7 +179,7 @@ class TextBasedChannel {
       return this.client.api.channels[this.id].messages
         .post({ data, files })
         .then(d => this.client.actions.MessageCreate.handle(d).message);
-    }, 3000);
+    }, 1500);
 
   }
 

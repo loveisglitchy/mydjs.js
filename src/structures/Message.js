@@ -629,7 +629,7 @@ class Message extends Base {
           }),
           this.channel.stopTyping()
       );
-    }, 3000);
+    }, 1500);
 
   }
 
