@@ -154,10 +154,6 @@ class TextBasedChannel {
     const User = require('../User');
     const GuildMember = require('../GuildMember');
 
-    this.startTyping(1);
-    setTimeout(async () => {
-
-
       if (this instanceof User || this instanceof GuildMember) {
         return this.createDM().then(dm => dm.send(content, options));
       }
@@ -175,12 +171,9 @@ class TextBasedChannel {
 
 
       const { data, files } = await apiMessage.resolveFiles();
-      this.stopTyping(true);
       return this.client.api.channels[this.id].messages
         .post({ data, files })
         .then(d => this.client.actions.MessageCreate.handle(d).message);
-    }, 1500);
-
   }
 
   /**
