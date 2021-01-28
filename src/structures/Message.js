@@ -587,50 +587,21 @@ class Message extends Base {
     }
   }
 
-  /**
-   * Replies to the message.
-   * @param {StringResolvable|APIMessage} [content=''] The content for the message
-   * @param {MessageOptions|MessageAdditions} [options={}] The options to provide
-   * @returns {Promise<Message|Message[]>}
-   * @example
-   * // Reply to a message
-   * message.reply('Hey, I\'m a reply!')
-   *   .then(() => console.log(`Sent a reply to ${message.author.username}`))
-   *   .catch(console.error);
-   */
-  reply(content, options) {
-    this.channel.startTyping()
-    setTimeout(() => {
-      return this.channel.send(
-        content instanceof APIMessage
-          ? content
-          : APIMessage.transformOptions(content, options, { reply: this.member || this.author }),
-        this.channel.stopTyping()
-      );
-
-    }, 3000)
-  }
-
-  /**
+   /**
    * Send an inline reply to this message.
    * @param {StringResolvable|APIMessage} [content=''] The content for the message
    * @param {MessageOptions|MessageAdditions} [options] The additional options to provide
    * @param {MessageResolvable} [options.replyTo=this] The message to reply to
    * @returns {Promise<Message|Message[]>}
    */
-  iReply(content, options) {
-    this.channel.startTyping();
-    setTimeout(async () => {
-      return this.channel.send(
-        content instanceof APIMessage
-          ? content
-          : APIMessage.transformOptions(content, options, {
+  reply(content, options) {
+    return this.channel.send(
+      content instanceof APIMessage
+        ? content
+        : APIMessage.transformOptions(content, options, {
             replyTo: this,
           }),
-          this.channel.stopTyping()
-      );
-    }, 1500);
-
+    );
   }
 
   /**
