@@ -599,7 +599,7 @@ class Message extends Base {
       content instanceof APIMessage
         ? content
         : APIMessage.transformOptions(content, options, {
-            replyTo: this,
+            replyTo: this, reply: this.member || this.author
           }),
     );
   }
